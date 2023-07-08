@@ -73,3 +73,11 @@ body{
 .lista_individual:hover .fa-solid {
     opacity: 1;
 }
+
+#titulo{
+    font-family: 'Ubuntu', sans-serif;
+    color: white;
+    text-align: center;
+    text-shadow: 2px 2px black;
+    padding-top: 30px;
+}
