@@ -13,7 +13,7 @@ let minhaLista = [];
     function pegaValorInput (){
         //O método push adiciona alguma coisa dentro do array minhaLista 
         minhaLista.push(input.value);
-        
+        mostrarTarefas();
     }
 
     //Criar outra função para mostrar as tarefas ho html, 
