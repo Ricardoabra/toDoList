@@ -81,3 +81,7 @@ body{
     text-shadow: 2px 2px black;
     padding-top: 30px;
 }
+#done{
+    background-color: rgb(193, 233, 193);
+    text-decoration: line-through;
+}

@@ -12,7 +12,10 @@ let minhaLista = [];
 //botão do addEventListener for clicado. 
     function pegaValorInput (){
         //O método push adiciona alguma coisa dentro do array minhaLista 
-        minhaLista.push(input.value);
+        minhaLista.push({
+            tarefa: input.value,
+            concluida:false
+        });
         input.value = ''
         mostrarTarefas();
     }
@@ -27,21 +30,37 @@ let minhaLista = [];
         minhaLista.forEach ( (item, index ) => {
             
             novaLista = novaLista + `
-            <li class="lista_individual">
-                <i class="fa-solid fa-check"></i>
-                <p>${item} </p>
+            <li class="lista_individual" id="${item.concluida && "done"}">
+                <i class="fa-solid fa-check" onclick="concluirTarefa(${index})"></i>
+                <p>${item.tarefa} </p>
                 <i class="fa-solid fa-trash" onclick="deletarItem(${index})"></i>
             </li>
             `
         });
         
        listaCompleta.innerHTML = novaLista 
+       localStorage.setItem('lista', JSON.stringify(minhaLista))
     };
+
+        function concluirTarefa(index){
+            minhaLista[index].concluida = !minhaLista[index].concluida
+            mostrarTarefas()
+        };
 
         function deletarItem(index){
             minhaLista.splice(index, 1)
             mostrarTarefas()
         };
+
+        function recarregarTarefas(){
+            const tarefasDoLocalStorage = localStorage.getItem("lista")
+            if(tarefasDoLocalStorage){
+            minhaLista= JSON.parse(tarefasDoLocalStorage)
+            }
+            mostrarTarefas()
+            
+        };
+        recarregarTarefas()
 //O addEventListener é para saber todas as vezes que o botão for clicado 
 button.addEventListener('click', pegaValorInput);
 
