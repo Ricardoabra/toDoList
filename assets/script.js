@@ -13,6 +13,7 @@ let minhaLista = [];
     function pegaValorInput (){
         //O método push adiciona alguma coisa dentro do array minhaLista 
         minhaLista.push(input.value);
+        input.value = ''
         mostrarTarefas();
     }
 
@@ -23,19 +24,24 @@ let minhaLista = [];
 
         let novaLista = ''
 // o forEach percorre item por item do array
-        minhaLista.forEach ( (item) => {
+        minhaLista.forEach ( (item, index ) => {
             
             novaLista = novaLista + `
             <li class="lista_individual">
                 <i class="fa-solid fa-check"></i>
                 <p>${item} </p>
-                <i class="fa-solid fa-trash"></i>
+                <i class="fa-solid fa-trash" onclick="deletarItem(${index})"></i>
             </li>
             `
         });
         
        listaCompleta.innerHTML = novaLista 
     };
+
+        function deletarItem(index){
+            minhaLista.splice(index, 1)
+            mostrarTarefas()
+        };
 //O addEventListener é para saber todas as vezes que o botão for clicado 
 button.addEventListener('click', pegaValorInput);
 
